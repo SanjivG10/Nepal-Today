@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.techniary.nepaltoday.MyAccountActivity">
+
+    <include layout="@layout/main_toolbar" android:id="@+id/toolbar_my_account_activity" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar_my_account_activity"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/user_name_text_input_my_account_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Username"
+            android:maxLines="1"
+             />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fav_quote_InputLayout_my_account_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textInputLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/fav_quote_text_input_my_account_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Say About Yourself "
+            android:maxLines="2"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image_my_account_activity"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_below="@id/fav_quote_InputLayout_my_account_activity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/default_avatar"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"
+        />
+
+    <Button
+        android:id="@+id/choose_image_my_account_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_image_my_account_activity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text=" Choose Image " />
+
+    <Button
+        android:id="@+id/finish_button_my_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="11dp"
+        android:text="Finish" />
+
+
+</RelativeLayout>

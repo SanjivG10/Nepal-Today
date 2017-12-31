@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.techniary.nepaltoday.ChangeQuoteActivity">
+
+
+    <include layout="@layout/main_toolbar" android:id="@+id/ChangeQuoteToolbar" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/quote_user_CHANGEQUOTE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ChangeQuoteToolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/change_quote_button_CHANGEQUOTEACTIVITY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/quote_user_CHANGEQUOTE"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="29dp"
+        android:text=" Save "
+        android:background="@color/colorPrimary"
+        />
+</RelativeLayout>

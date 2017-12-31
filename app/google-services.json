@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "664310007754",
+    "firebase_url": "https://nepal-today.firebaseio.com",
+    "project_id": "nepal-today",
+    "storage_bucket": "nepal-today.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664310007754:android:9d45cfe9b60ecef5",
+        "android_client_info": {
+          "package_name": "com.techniary.nepaltoday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664310007754-jles0cqcj0gjjg1m1e5rnfrh8nm46nvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj1RSAkhwmZ8LIMH8bwX_JVK5S82JkkL4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
