@@ -201,6 +201,7 @@ public class MyAccountActivity extends AppCompatActivity {
                     {
                         user_profile_image_download_url = task.getResult().getDownloadUrl().toString();
                         anotherProgressDialog.dismiss();
+
                     }
                     else
                     {
