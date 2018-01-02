@@ -1,10 +1,12 @@
 package com.techniary.nepaltoday;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -27,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -70,11 +74,13 @@ public class UsersPostActivity extends AppCompatActivity {
     private ProgressDialog postProgressDailog;
     private Uri imageUriForSaving;
     private DatabaseReference gettingUsernameAndPhotoReference;
+    private Bitmap currentUploadingImage;
 
     private String downloadUrlForImage;
 
     private static final int GALLERY_REQUEST_CODE = 200;
     private String mUsername;
+    private String currentUserPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +108,8 @@ public class UsersPostActivity extends AppCompatActivity {
 
         imageUriForSaving = null;
         downloadUrlForImage = null;
+        currentUserPhoto= null;
+        currentUploadingImage = null;
 
         mCircleImageView = (CircleImageView) findViewById(R.id.user_circleImageView_UsersPostActivity);
         userName = (TextView) findViewById(R.id.userName_UsersPostActivity);
@@ -114,7 +122,7 @@ public class UsersPostActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         userID = mFirebaseAuth.getCurrentUser().getUid();
         mStorageReference = FirebaseStorage.getInstance().getReference().child("User_images").child(userID);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(userID);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         final String current_logged_in_user = mFirebaseAuth.getCurrentUser().getUid();
         gettingUsernameAndPhotoReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_logged_in_user);
 
@@ -123,6 +131,7 @@ public class UsersPostActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String userName_value = dataSnapshot.child("Username").getValue().toString();
                 String imageUrl = dataSnapshot.child("profile_picture").getValue().toString();
+                currentUserPhoto = imageUrl;
                 userName.setText(userName_value);
                 mUsername = userName_value;
                 Picasso.with(UsersPostActivity.this).load(imageUrl).placeholder(R.drawable.default_avatar).into(mCircleImageView);
@@ -202,27 +211,31 @@ public class UsersPostActivity extends AppCompatActivity {
                 final String Caption = mEditText.getText().toString();
 
 
-                if(imageUriForSaving!=null) {
-                    StorageReference filePath = mStorageReference.child("User_images").child(current_user_id)
+                if(currentUploadingImage!=null) {
+                    StorageReference filePath = mStorageReference.child("User_images")
                             .child(time + ".jpg");
-                    filePath.putFile(imageUriForSaving).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            if (task.isSuccessful())
-                            {
-                                downloadUrlForImage = task.getResult().getDownloadUrl().toString();
-                                saveDataWithPhoto(postTime,Caption,downloadUrlForImage);
-                                mImageView.setImageResource(android.R.color.transparent);
-                                mEditText.setText("");
-                            }
-                            else
-                            {
-                                postProgressDailog.dismiss();
-                                Toast.makeText(getApplicationContext()," Error in Saving ",Toast.LENGTH_LONG).show();
-                            }
 
+
+                    //uploadingBitmap
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    currentUploadingImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] data = baos.toByteArray();
+                    UploadTask uploadTask = filePath.putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            postProgressDailog.dismiss();
+                            Toast.makeText(getApplicationContext()," Error in Saving Image ",Toast.LENGTH_LONG).show();
                         }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                            downloadUrlForImage = taskSnapshot.getDownloadUrl().toString();
+                            saveDataWithPhoto(postTime,Caption,downloadUrlForImage);                        }
                     });
+
+
                 }
                 else
                 {
@@ -247,6 +260,7 @@ public class UsersPostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mImageView.setImageResource(android.R.color.transparent);
                 crossImageButton.setVisibility(View.GONE);
+                mEditText.setHint(" What's on your mind? ");
             }
         });
 
@@ -255,10 +269,12 @@ public class UsersPostActivity extends AppCompatActivity {
     }
 
     private void saveDataWithoutPhoto(String Caption, String postTime) {
+
         HashMap<String, String> user_posts = new HashMap<>();
         user_posts.put("Time",postTime);
         user_posts.put("Caption",Caption);
         user_posts.put("Username",mUsername);
+        user_posts.put("UserPhoto",currentUserPhoto);
 
         mDatabaseReference.push().setValue(user_posts).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -287,6 +303,8 @@ public class UsersPostActivity extends AppCompatActivity {
         user_posts.put("Image",downloadUrlForImage);
         user_posts.put("Caption",Caption);
         user_posts.put("Username",mUsername);
+        user_posts.put("UserPhoto",currentUserPhoto);
+
 
         mDatabaseReference.push().setValue(user_posts).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -314,18 +332,62 @@ public class UsersPostActivity extends AppCompatActivity {
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
 
             Uri imageUri = data.getData();
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int height = displayMetrics.heightPixels;
-            int width = displayMetrics.widthPixels;
-            Picasso.with(getApplicationContext()).load(imageUri).resize(width,height).centerCrop().into(mImageView);
-            mEditText.setHint(" Enter your Caption for the Pic ");
-            imageUriForSaving = imageUri;
-            crossImageButton.setVisibility(View.VISIBLE);
+            String url= getRealPathFromURI(getApplicationContext(),imageUri);
+            File f = new File(url);
+
+            try {
+                Bitmap bitmap = BitmapFactory.decodeFile(url);
+                mImageView.setImageBitmap(bitmap);
+                mEditText.setHint(" Enter your Caption for the Pic ");
+                crossImageButton.setVisibility(View.VISIBLE);
+
+                try {
+                    Bitmap compressedImageBitmap = new Compressor(getApplicationContext()).setMaxWidth(640)
+                            .setMaxHeight(480)
+                            .setQuality(75).compressToBitmap(f);
+                    currentUploadingImage = compressedImageBitmap;
+                }
+                catch (IOException e)
+                {
+                    Toast.makeText(getApplicationContext()," Some Error Occured ",Toast.LENGTH_LONG).show();
+                    currentUploadingImage= null;
+                }
+
+
+                currentUploadingImage = bitmap;
+
+            }
+            catch (OutOfMemoryError e)
+            {
+                Toast.makeText(getApplicationContext(), " File too Large ", Toast.LENGTH_LONG).show();
+                if(mImageView.getDrawable()==null) {
+                    mEditText.setHint(" What's on your mind?");
+                    crossImageButton.setVisibility(View.GONE);
+                }
+            }
+
+            //Picasso.with(getApplicationContext()).load(imageUri).into(mImageView);
+
         }
     }
 
 
 
+
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
 
 }
