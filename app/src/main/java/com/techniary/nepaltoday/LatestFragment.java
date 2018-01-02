@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -108,10 +110,20 @@ public class LatestFragment extends Fragment {
             mUsername.setText(caption);
         }
 
-        public void setImage(String image,Context c) {
-            ImageView imageView = (ImageView) theRecyclingView.findViewById(R.id.userUploadedImageView);
+        public void setImage(final String image, final Context c) {
+            final ImageView imageView = (ImageView) theRecyclingView.findViewById(R.id.userUploadedImageView);
 
-            Picasso.with(c).load(image).into(imageView);
+            Picasso.with(c).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                Picasso.with(c).load(image).into(imageView);
+                }
+            });
         }
 
         public void setTime(String time) {
@@ -119,10 +131,20 @@ public class LatestFragment extends Fragment {
             time_of_posting.setText(time);
         }
 
-        public void setCurrentUserImage(String userPhoto, Context c) {
-            CircleImageView imageView = (CircleImageView) theRecyclingView.findViewById(R.id.userWhoPostedCircleImageView);
+        public void setCurrentUserImage(final String userPhoto, final Context c) {
+            final CircleImageView imageView = (CircleImageView) theRecyclingView.findViewById(R.id.userWhoPostedCircleImageView);
 
-            Picasso.with(c).load(userPhoto).into(imageView);
+            Picasso.with(c).load(userPhoto).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(c).load(userPhoto).into(imageView);
+                }
+            });
         }
     }
 

@@ -182,9 +182,6 @@ public class MyAccountActivity extends AppCompatActivity {
 
             }
 
-
-
-
     }
 
     private void saveDatainFirebaseStorage(Uri imageUri) {

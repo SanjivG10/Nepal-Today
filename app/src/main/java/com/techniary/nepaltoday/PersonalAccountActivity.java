@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -74,10 +76,22 @@ public class PersonalAccountActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
              String userBio =dataSnapshot.child("Users").child(current_user_id).child("Bio").getValue().toString();
-             String user_image =dataSnapshot.child("Users").child(current_user_id).child("profile_picture").getValue().toString();
+             final String user_image =dataSnapshot.child("Users").child(current_user_id).child("profile_picture").getValue().toString();
 
              quoteView.setText(userBio);
-             Picasso.with(PersonalAccountActivity.this).load(user_image).placeholder(R.drawable.default_avatar).into(mCircleImageView);
+
+             Picasso.with(getApplicationContext()).load(user_image).networkPolicy(NetworkPolicy.OFFLINE).into(mCircleImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        Picasso.with(PersonalAccountActivity.this).load(user_image).placeholder(R.drawable.default_avatar).into(mCircleImageView);
+                    }
+                });
+
 
             }
 
@@ -112,12 +126,6 @@ public class PersonalAccountActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
 
 
     @Override

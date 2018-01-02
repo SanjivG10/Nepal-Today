@@ -41,6 +41,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -125,16 +127,28 @@ public class UsersPostActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         final String current_logged_in_user = mFirebaseAuth.getCurrentUser().getUid();
         gettingUsernameAndPhotoReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_logged_in_user);
+        gettingUsernameAndPhotoReference.keepSynced(true);
 
         gettingUsernameAndPhotoReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String userName_value = dataSnapshot.child("Username").getValue().toString();
-                String imageUrl = dataSnapshot.child("profile_picture").getValue().toString();
+                final String imageUrl = dataSnapshot.child("profile_picture").getValue().toString();
                 currentUserPhoto = imageUrl;
                 userName.setText(userName_value);
                 mUsername = userName_value;
-                Picasso.with(UsersPostActivity.this).load(imageUrl).placeholder(R.drawable.default_avatar).into(mCircleImageView);
+
+                Picasso.with(getApplicationContext()).load(imageUrl).networkPolicy(NetworkPolicy.OFFLINE).into(mCircleImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        Picasso.with(getApplicationContext()).load(imageUrl).into(mCircleImageView);
+                    }
+                });
             }
 
             @Override
