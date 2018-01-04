@@ -11,21 +11,28 @@ public class Posts {
     private String Time;
     private String Username;
     private String UserPhoto;
+    private String TotalReactions;
+    private String CurrentUserReaction;
+    private String Unique;
+
+
+    public Posts(String caption, String image, String time, String username, String userPhoto, String totalReactions, String currentUserReaction, String Unique) {
+        Caption = caption;
+        Image = image;
+        Time = time;
+        Username = username;
+        UserPhoto = userPhoto;
+        TotalReactions = totalReactions;
+        CurrentUserReaction = currentUserReaction;
+        this.Unique= Unique;
+    }
+
 
     public Posts()
     {
 
     }
 
-
-
-    public Posts(String caption, String image, String time, String username, String UserPhoto) {
-        Caption = caption;
-        Image = image;
-        Time = time;
-        Username = username;
-        this.UserPhoto = UserPhoto;
-    }
 
     public String getCaption() {
         return Caption;
@@ -66,4 +73,48 @@ public class Posts {
     public void setUserPhoto(String userPhoto) {
         UserPhoto = userPhoto;
     }
+
+    public String getTotalReactions() {
+        return TotalReactions;
+    }
+
+    public void setTotalReactions(String totalReactions) {
+        TotalReactions = totalReactions;
+    }
+
+    public String getCurrentUserReaction() {
+        return CurrentUserReaction;
+    }
+
+    public void setCurrentUserReaction(String currentUserReaction) {
+        CurrentUserReaction = currentUserReaction;
+    }
+
+    public String getUnique() {
+        return Unique;
+    }
+
+    public void setUnique(String unique) {
+        this.Unique = unique;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

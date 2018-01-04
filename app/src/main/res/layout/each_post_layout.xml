@@ -78,7 +78,6 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/captionForPic"
             android:id="@+id/userUploadedImageView"
-            tools:src="@drawable/default_avatar"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             />
@@ -96,6 +95,7 @@
         android:layout_below="@id/iamgeAndCaptionLayout"
         >
 
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,9 +112,10 @@
             android:id="@+id/loveButton"
             android:drawableLeft="@drawable/like_button"
             android:background="#FFFFFF"
-            android:text="Like"
             android:layout_marginStart="20dp"
             />
+
+
 
     </RelativeLayout>
 
