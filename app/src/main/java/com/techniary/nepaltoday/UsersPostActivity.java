@@ -72,13 +72,11 @@ public class UsersPostActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
-    private DatabaseReference reactionDatabaseReference;
     private StorageReference mStorageReference;
     private ProgressDialog postProgressDailog;
     private Uri imageUriForSaving;
     private DatabaseReference gettingUsernameAndPhotoReference;
     private Bitmap currentUploadingImage;
-    private DatabaseReference uniqueKeysReference;
 
     private String downloadUrlForImage;
 
@@ -128,10 +126,9 @@ public class UsersPostActivity extends AppCompatActivity {
         mStorageReference = FirebaseStorage.getInstance().getReference().child("User_images").child(userID);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         final String current_logged_in_user = mFirebaseAuth.getCurrentUser().getUid();
-        reactionDatabaseReference=FirebaseDatabase.getInstance().getReference().child("PostReactions");
+
         gettingUsernameAndPhotoReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_logged_in_user);
         gettingUsernameAndPhotoReference.keepSynced(true);
-        uniqueKeysReference = FirebaseDatabase.getInstance().getReference().child("UniqueKeys");
 
         gettingUsernameAndPhotoReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -294,7 +291,7 @@ public class UsersPostActivity extends AppCompatActivity {
         user_posts.put("Username",mUsername);
         user_posts.put("UserPhoto",currentUserPhoto);
         user_posts.put("TotalReactions","0");
-        user_posts.put("CurrentUserReaction","false");
+        user_posts.put("CurrentUserReaction","notreacted");
         final String uniqueId = mDatabaseReference.push().getKey();
         user_posts.put("Unique",uniqueId);
         mDatabaseReference.child(uniqueId).setValue(user_posts).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -302,42 +299,11 @@ public class UsersPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
                 {
-                    HashMap<String,String> reactions = new HashMap<>();
-                    reactions.put("TotalReactions","0");
-                    reactions.put("CurrentUserReaction","false");
-                    reactionDatabaseReference.child(uniqueId).setValue(reactions).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
-                                uniqueKeysReference.child(uniqueId).setValue(uniqueId).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful())
-                                        {
+
                                             postProgressDailog.dismiss();
                                             Intent intent = new Intent(UsersPostActivity.this,MainActivity.class);
                                             startActivity(intent);
                                             finish();
-                                        }
-                                        else
-                                        {
-                                            postProgressDailog.dismiss();
-                                            Toast.makeText(getApplicationContext()," Error in Saving ",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-
-                            }
-                            else
-                            {
-                                postProgressDailog.dismiss();
-                                Toast.makeText(getApplicationContext()," Error in Saving ",Toast.LENGTH_LONG).show();
-
-                            }
-                        }
-                    });
-
                 }
                 else
                 {
@@ -358,7 +324,7 @@ public class UsersPostActivity extends AppCompatActivity {
         user_posts.put("Username",mUsername);
         user_posts.put("UserPhoto",currentUserPhoto);
         user_posts.put("TotalReactions","0");
-        user_posts.put("CurrentUserReaction","false");
+        user_posts.put("CurrentUserReaction","notreacted");
         final String uniqueId = mDatabaseReference.push().getKey();
         user_posts.put("Unique",uniqueId);
         mDatabaseReference.child(uniqueId).setValue(user_posts).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -366,45 +332,13 @@ public class UsersPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
                 {
-                    HashMap<String,String> reactions = new HashMap<>();
-                    reactions.put("TotalReactions","0");
-                    reactions.put("CurrentUserReaction","false");
-                    reactionDatabaseReference.child(uniqueId).child("TotalReactions").setValue(reactions).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
 
-                                uniqueKeysReference.child(uniqueId).setValue(uniqueId).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful())
-                                        {
+
                                             postProgressDailog.dismiss();
                                             Intent intent = new Intent(UsersPostActivity.this,MainActivity.class);
                                             startActivity(intent);
                                             finish();
-                                        }
-                                        else
-                                        {
-                                            postProgressDailog.dismiss();
-                                            Toast.makeText(getApplicationContext()," Error in Saving ",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-
-                            }
-                            else
-                            {
-                                postProgressDailog.dismiss();
-                                Toast.makeText(getApplicationContext()," Error in Saving ",Toast.LENGTH_LONG).show();
-
-                            }
-                        }
-                    });
-
                 }
-
                 else
                 {
                     postProgressDailog.dismiss();
