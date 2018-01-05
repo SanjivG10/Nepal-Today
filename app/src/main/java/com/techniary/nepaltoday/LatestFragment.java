@@ -64,6 +64,8 @@ public class LatestFragment extends Fragment {
     private static int positionOfAdapter;
     private static FirebaseRecyclerAdapter mRecyclerAdapter;
     private static String currentUserID;
+    private static String currenyReactionUniquekey;
+    private static DatabaseReference reactionUserDatabase;
 
     public LatestFragment() {
         // Required empty public constructor
@@ -95,6 +97,7 @@ public class LatestFragment extends Fragment {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         mDatabaseReference.keepSynced(true);
         currentUserID = mAuth.getCurrentUser().getUid();
+        reactionUserDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
         return v;
     }
 
@@ -165,21 +168,32 @@ public class LatestFragment extends Fragment {
                     totalVotes = String.valueOf(vote);
                     Map<String, Object> reactions = new HashMap<>();
                     reactions.put("TotalReactions",totalVotes);
-                    reactions.put("CurrentUserReaction","reacted");
 
                     mDatabaseReference.child(uniqueKey).updateChildren(reactions).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                            HashMap<String,String> reactingUser = new HashMap<>();
-                            reactingUser.put(currentUserID,"1");
-                            mDatabaseReference.child(uniqueKey).child("ReactingUser").setValue(reactingUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            final String newUniqueKey = reactionUserDatabase.push().getKey();
+                            currenyReactionUniquekey = newUniqueKey;
+                            reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(newUniqueKey).setValue(currentUserID).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful())
                                     {
+                                        reactionUserDatabase.child(uniqueKey).child("ReactingUser").child("CurrentUserReaction").setValue("reacted").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful())
+                                                {
 
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
                                     }
                                     else
                                     {
@@ -224,19 +238,18 @@ public class LatestFragment extends Fragment {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                                mDatabaseReference.child(uniqueKey).child("ReactingUser").child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful())
-                                        {
+                                if(currenyReactionUniquekey!=null) {
+                                    reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(currenyReactionUniquekey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
 
+                                            } else {
+                                                Toast.makeText(context, " Some Error Occured ", Toast.LENGTH_LONG).show();
+                                            }
                                         }
-                                        else
-                                        {
-                                            Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
+                                    });
+                                }
                             }
                             else
                             {

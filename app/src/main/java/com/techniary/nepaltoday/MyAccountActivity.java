@@ -107,9 +107,7 @@ public class MyAccountActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
                     saveDataInFirebaseRealTime();
-                    Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
                 }
 
 
@@ -141,7 +139,9 @@ public class MyAccountActivity extends AppCompatActivity {
                 {
                     Toast.makeText(MyAccountActivity.this," Data Saved",Toast.LENGTH_SHORT);
                     progressDialog.dismiss();
-
+                    Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 else {

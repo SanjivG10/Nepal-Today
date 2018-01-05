@@ -164,7 +164,7 @@ public class PersonalAccountActivity extends AppCompatActivity {
 
     private void upDateDatainFirebaseStorage(Uri resultUri) {
         mAuth = FirebaseAuth.getInstance();
-        String current_user_id =  mAuth.getCurrentUser().getUid();
+        final String current_user_id =  mAuth.getCurrentUser().getUid();
 
         anotherProgressDialog.show();
         StorageReference filePath = mStorageReference.child("profile_images").child(current_user_id).child(current_user_id+".jpg");
@@ -174,6 +174,20 @@ public class PersonalAccountActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful())
                         {
+                            mDatabaseReference.child("Users").child(current_user_id).child("profile_picture").setValue(task.getResult().getDownloadUrl().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+
+                                }
+                                else
+                                {
+                                    Toast.makeText(PersonalAccountActivity.this," Error Occured ",Toast.LENGTH_SHORT).show();
+
+                                }
+                                }
+                            });
                             Toast.makeText(PersonalAccountActivity.this," Profile Picture Updated ",Toast.LENGTH_SHORT).show();
                             anotherProgressDialog.dismiss();
                         }
