@@ -126,7 +126,6 @@ public class MyAccountActivity extends AppCompatActivity {
 
         String profile_image = user_profile_image_download_url;
 
-
         HashMap<String,String> user_info = new HashMap<>();
         user_info.put("Username",userName);
         user_info.put("Bio",bio);

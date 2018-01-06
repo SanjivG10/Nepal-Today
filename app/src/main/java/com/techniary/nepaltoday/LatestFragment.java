@@ -64,7 +64,7 @@ public class LatestFragment extends Fragment {
     private static int positionOfAdapter;
     private static FirebaseRecyclerAdapter mRecyclerAdapter;
     private static String currentUserID;
-    private static String currenyReactionUniquekey;
+    private static String currentUserReactionKey;
     private static DatabaseReference reactionUserDatabase;
 
     public LatestFragment() {
@@ -83,7 +83,7 @@ public class LatestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_latest,container,false);
+        View v = inflater.inflate(R.layout.fragment_latest, container, false);
         latestFragmentRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerViewForLatestFragment);
         latestFragmentRecyclerView.setHasFixedSize(true);
         userReactState = false;
@@ -112,19 +112,18 @@ public class LatestFragment extends Fragment {
                 ) {
 
                     @Override
-                    protected void populateViewHolder(final PostViewHolder viewHolder,final Posts model, int position) {
+                    protected void populateViewHolder(final PostViewHolder viewHolder, final Posts model, int position) {
                         Context c = getActivity();
                         context = c;
                         viewHolder.setUsername(model.getUsername());
                         viewHolder.setCaption(model.getCaption());
                         viewHolder.setTime(model.getTime());
-                        viewHolder.setImage(model.getImage(),c);
-                        viewHolder.setCurrentUserImage(model.getUserPhoto(),c);
-                        viewHolder.imageViewIfUserClicked(model.getCurrentUserReaction(),c);
+                        viewHolder.setImage(model.getImage(), c);
+                        viewHolder.setCurrentUserImage(model.getUserPhoto(), c);
+                        viewHolder.imageViewIfUserClicked(model.getCurrentUserReaction(), c);
                         totalVotes = model.getTotalReactions();
                         uniqueKey = model.getUnique();
                     }
-
 
                 };
         mRecyclerAdapter = firebaseRecyclerAdapter;
@@ -132,10 +131,11 @@ public class LatestFragment extends Fragment {
 
     }
 
-    public static class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         View theRecyclingView;
-        private Button loveButton ;
+        private Button loveButton;
 
         public PostViewHolder(View itemView) {
             super(itemView);
@@ -146,125 +146,86 @@ public class LatestFragment extends Fragment {
         }
 
 
-
         @Override
         public void onClick(View view) {
-            if(view.getId()==loveButton.getId())
-            {
+            if (view.getId() == loveButton.getId()) {
                 positionOfAdapter = getAdapterPosition();
                 uniqueKey = mRecyclerAdapter.getRef(positionOfAdapter).getKey();
 
-                if(firstTime==true)
-                {
+                if (firstTime == true) {
 
-                    loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
+                    loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red, 0, 0, 0);
                     firstTime = false;
-                    int vote= Integer.valueOf(totalVotes);
-                    if(vote<0)
-                    {
-                        vote = 0;
-                    }
-                    vote++;
-                    totalVotes = String.valueOf(vote);
-                    Map<String, Object> reactions = new HashMap<>();
-                    reactions.put("TotalReactions",totalVotes);
 
-                    mDatabaseReference.child(uniqueKey).updateChildren(reactions).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(currentUserID).setValue("1").addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
-                            final String newUniqueKey = reactionUserDatabase.push().getKey();
-                            currenyReactionUniquekey = newUniqueKey;
-                            reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(newUniqueKey).setValue(currentUserID).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful())
-                                    {
-                                        reactionUserDatabase.child(uniqueKey).child("ReactingUser").child("CurrentUserReaction").setValue("reacted").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            if (task.isSuccessful()) {
+                                reactionUserDatabase.child(uniqueKey).child("ReactingUser").addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(String.valueOf(dataSnapshot.getChildrenCount())).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful())
-                                                {
+                                                if (task.isSuccessful()) {
 
-                                                }
-                                                else
-                                                {
-                                                    Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(context, "Some Error Occured", Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         });
                                     }
-                                    else
-                                    {
-                                        Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
                                     }
-                                }
-                            });
-                            }
-                            else
-                            {
-                                Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
+                                });
+
+                            } else {
+                                Toast.makeText(context, " Some Error Occured ", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
 
-
-                }
-                else
-                {
-                    loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
+                } else {
+                    loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button, 0, 0, 0);
                     firstTime = true;
-
-                    int vote= Integer.valueOf(totalVotes);
-                    if(vote<0)
-                    {
-                        vote = 0;
-                    }
-                    if(vote>0) {
-                        vote--;
-                    }
-                    if(vote==0)
-                    {
-                        totalVotes="0";
-                    }
-                    totalVotes = String.valueOf(vote);
-                    Map<String, Object> reactions = new HashMap<>();
-                    reactions.put("TotalReactions",totalVotes);
-                    reactions.put("CurrentUserReaction","notreacted");
-
-                    mDatabaseReference.child(uniqueKey).updateChildren(reactions).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(currentUserID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
-                                if(currenyReactionUniquekey!=null) {
-                                    reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(currenyReactionUniquekey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
+                            if (task.isSuccessful()) {
+                                reactionUserDatabase.child(uniqueKey).child("ReactingUser").addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(String.valueOf(dataSnapshot.getChildrenCount())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
 
-                                            } else {
-                                                Toast.makeText(context, " Some Error Occured ", Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(context, "Some Error Occured", Toast.LENGTH_LONG).show();
+                                                }
                                             }
-                                        }
-                                    });
-                                }
-                            }
-                            else
-                            {
-                                Toast.makeText(context," Some Error Occured ",Toast.LENGTH_LONG).show();
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                            } else {
+                                Toast.makeText(context, " Some Error Occured ", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
 
-
-
                 }
-
             }
         }
-
 
 
         public void setUsername(String username)
@@ -317,13 +278,36 @@ public class LatestFragment extends Fragment {
         }
 
 
-        public void imageViewIfUserClicked(String currentUserReaction, final Context c) {
+        public void imageViewIfUserClicked(String howCurrentUserReacts, final Context c) {
 
-            if(currentUserReaction.equals("notreacted")) {
+            String key = mRecyclerAdapter.getRef(getAdapterPosition()).getKey();
+            Log.e("THEKEY",key);
+            mDatabaseReference.child(key).child("ReactingUser").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if(dataSnapshot.hasChild(currentUserID))
+                    {
+                        loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
+
+                    }
+                    else
+                    {
+                        loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            /*if(currentUserReactionKey.equals("notreacted")) {
 
                 loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
             }
-            else if (currentUserReaction.equals("reacted"))
+            else if (currentUserReactionKey.equals("reacted"))
             {
                 loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
             }
@@ -331,6 +315,7 @@ public class LatestFragment extends Fragment {
             {
                 loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
             }
+            */
 
         }
     }

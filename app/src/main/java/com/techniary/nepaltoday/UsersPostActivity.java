@@ -292,6 +292,7 @@ public class UsersPostActivity extends AppCompatActivity {
         user_posts.put("UserPhoto",currentUserPhoto);
         user_posts.put("TotalReactions","0");
         user_posts.put("CurrentUserReaction","notreacted");
+        user_posts.put("ReactingUser","null");
         final String uniqueId = mDatabaseReference.push().getKey();
         user_posts.put("Unique",uniqueId);
         mDatabaseReference.child(uniqueId).setValue(user_posts).addOnCompleteListener(new OnCompleteListener<Void>() {

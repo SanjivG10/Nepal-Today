@@ -14,9 +14,14 @@ public class Posts {
     private String TotalReactions;
     private String CurrentUserReaction;
     private String Unique;
+    private ReactingUser ReactingUser;
+
+    public void setReactingUsers(ReactingUser reactingUsers) {
+        ReactingUser = reactingUsers;
+    }
 
 
-    public Posts(String caption, String image, String time, String username, String userPhoto, String totalReactions, String currentUserReaction, String Unique) {
+    public Posts(String caption, String image, String time, String username, String userPhoto, String totalReactions, String currentUserReaction, String Unique, ReactingUser reactingUsers) {
         Caption = caption;
         Image = image;
         Time = time;
@@ -25,6 +30,7 @@ public class Posts {
         TotalReactions = totalReactions;
         CurrentUserReaction = currentUserReaction;
         this.Unique= Unique;
+        ReactingUser = reactingUsers;
     }
 
 
@@ -83,6 +89,9 @@ public class Posts {
     }
 
     public String getCurrentUserReaction() {
+
+
+
         return CurrentUserReaction;
     }
 
@@ -96,6 +105,10 @@ public class Posts {
 
     public void setUnique(String unique) {
         this.Unique = unique;
+    }
+
+    public ReactingUser getReactingUsers() {
+        return ReactingUser;
     }
 }
 
