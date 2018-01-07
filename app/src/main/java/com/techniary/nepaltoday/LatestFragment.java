@@ -1,6 +1,8 @@
 package com.techniary.nepaltoday;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,8 +68,8 @@ public class LatestFragment extends Fragment {
     private static int positionOfAdapter;
     private static FirebaseRecyclerAdapter mRecyclerAdapter;
     private static String currentUserID;
-    private static String currentUserReactionKey;
     private static DatabaseReference reactionUserDatabase;
+    private static DatabaseReference userDatabaseReference;
 
     public LatestFragment() {
         // Required empty public constructor
@@ -98,6 +102,8 @@ public class LatestFragment extends Fragment {
         mDatabaseReference.keepSynced(true);
         currentUserID = mAuth.getCurrentUser().getUid();
         reactionUserDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
+        userDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+
         return v;
     }
 
@@ -115,11 +121,11 @@ public class LatestFragment extends Fragment {
                     protected void populateViewHolder(final PostViewHolder viewHolder, final Posts model, int position) {
                         Context c = getActivity();
                         context = c;
-                        viewHolder.setUsername(model.getUsername());
+                        viewHolder.setUsername(model.getCurrentUserID());
                         viewHolder.setCaption(model.getCaption());
                         viewHolder.setTime(model.getTime());
                         viewHolder.setImage(model.getImage(), c);
-                        viewHolder.setCurrentUserImage(model.getUserPhoto(), c);
+                        viewHolder.setCurrentUserImage(model.getCurrentUserID(), c);
                         viewHolder.imageViewIfUserClicked(model.getCurrentUserReaction(), c);
                         totalVotes = model.getTotalReactions();
                         uniqueKey = model.getUnique();
@@ -131,20 +137,17 @@ public class LatestFragment extends Fragment {
 
     }
 
-
     public static class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         View theRecyclingView;
         private Button loveButton;
-
         public PostViewHolder(View itemView) {
             super(itemView);
             theRecyclingView = itemView;
             loveButton = (Button) theRecyclingView.findViewById(R.id.loveButton);
+
             loveButton.setOnClickListener(this);
-
         }
-
 
         @Override
         public void onClick(View view) {
@@ -225,15 +228,25 @@ public class LatestFragment extends Fragment {
 
                 }
             }
+
         }
 
 
-        public void setUsername(String username)
+        public void setUsername(String userPostedID)
         {
-            TextView mUsername= (TextView) theRecyclingView.findViewById(R.id.userWhoPostedUserName);
-            mUsername.setText(username);
-        }
+            final TextView mUsername= (TextView) theRecyclingView.findViewById(R.id.userWhoPostedUserName);
+            userDatabaseReference.child(userPostedID).child("Username").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mUsername.setText(dataSnapshot.getValue().toString());
+                }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
 
         public void setCaption(String caption) {
             TextView mUsername= (TextView) theRecyclingView.findViewById(R.id.captionForPic);
@@ -261,20 +274,33 @@ public class LatestFragment extends Fragment {
             time_of_posting.setText(time);
         }
 
-        public void setCurrentUserImage(final String userPhoto, final Context c) {
+        public void setCurrentUserImage(final String userPostedID, final Context c) {
             final CircleImageView imageView = (CircleImageView) theRecyclingView.findViewById(R.id.userWhoPostedCircleImageView);
 
-            Picasso.with(c).load(userPhoto).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+            userDatabaseReference.child(userPostedID).child("profile_picture").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onSuccess() {
+                public void onDataChange(final DataSnapshot dataSnapshot) {
+                    Picasso.with(c).load(dataSnapshot.getValue().toString()).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
 
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(c).load(dataSnapshot.getValue().toString()).into(imageView);
+                        }
+                    });
                 }
 
                 @Override
-                public void onError() {
-                    Picasso.with(c).load(userPhoto).into(imageView);
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
+
+
+
         }
 
 

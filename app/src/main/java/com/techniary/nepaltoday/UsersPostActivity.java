@@ -288,10 +288,9 @@ public class UsersPostActivity extends AppCompatActivity {
         HashMap<String, String> user_posts = new HashMap<>();
         user_posts.put("Time",postTime);
         user_posts.put("Caption",Caption);
-        user_posts.put("Username",mUsername);
-        user_posts.put("UserPhoto",currentUserPhoto);
         user_posts.put("TotalReactions","0");
         user_posts.put("CurrentUserReaction","notreacted");
+        user_posts.put("CurrentUserID",userID);
         user_posts.put("ReactingUser","null");
         final String uniqueId = mDatabaseReference.push().getKey();
         user_posts.put("Unique",uniqueId);
@@ -322,9 +321,8 @@ public class UsersPostActivity extends AppCompatActivity {
         user_posts.put("Time",postTime);
         user_posts.put("Image",downloadUrlForImage);
         user_posts.put("Caption",Caption);
-        user_posts.put("Username",mUsername);
-        user_posts.put("UserPhoto",currentUserPhoto);
         user_posts.put("TotalReactions","0");
+        user_posts.put("CurrentUserID",userID);
         user_posts.put("CurrentUserReaction","notreacted");
         final String uniqueId = mDatabaseReference.push().getKey();
         user_posts.put("Unique",uniqueId);
