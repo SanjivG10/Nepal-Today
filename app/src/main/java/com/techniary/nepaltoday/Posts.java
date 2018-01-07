@@ -58,7 +58,7 @@ public class Posts {
     public void setTime(String time) {
         Time = time;
     }
-    
+
 
     public String getTotalReactions() {
         return TotalReactions;

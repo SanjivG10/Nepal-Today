@@ -95,7 +95,7 @@ public class LatestFragment extends Fragment {
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         positionOfAdapter = 0;
-
+        firstTime = false;
         latestFragmentRecyclerView.setLayoutManager(layoutManager);
         mAuth = FirebaseAuth.getInstance();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -160,7 +160,6 @@ public class LatestFragment extends Fragment {
                     loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red, 0, 0, 0);
                     firstTime = false;
 
-
                     reactionUserDatabase.child(uniqueKey).child("ReactingUser").child(currentUserID).setValue("1").addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -168,7 +167,8 @@ public class LatestFragment extends Fragment {
                                 reactionUserDatabase.child(uniqueKey).child("ReactingUser").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(String.valueOf(dataSnapshot.getChildrenCount())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        String totalVotes = String.valueOf(dataSnapshot.getChildrenCount());
+                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(totalVotes).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -202,7 +202,8 @@ public class LatestFragment extends Fragment {
                                 reactionUserDatabase.child(uniqueKey).child("ReactingUser").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(String.valueOf(dataSnapshot.getChildrenCount())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        String totalVotes = String.valueOf(dataSnapshot.getChildrenCount());
+                                        reactionUserDatabase.child(uniqueKey).child("TotalReactions").setValue(totalVotes).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -299,8 +300,6 @@ public class LatestFragment extends Fragment {
                 }
             });
 
-
-
         }
 
 
@@ -315,7 +314,6 @@ public class LatestFragment extends Fragment {
                     if(dataSnapshot.hasChild(currentUserID))
                     {
                         loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
-
                     }
                     else
                     {
