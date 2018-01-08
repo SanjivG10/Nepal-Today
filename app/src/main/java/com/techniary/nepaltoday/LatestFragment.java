@@ -314,6 +314,7 @@ public class LatestFragment extends Fragment {
                     if(dataSnapshot.hasChild(currentUserID))
                     {
                         loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
+
                     }
                     else
                     {

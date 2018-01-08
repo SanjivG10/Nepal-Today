@@ -231,7 +231,7 @@ public class UsersPostActivity extends AppCompatActivity {
                             .child(time + ".jpg");
 
 
-                    //uploadingBitmap
+                    //uploadingBitmap`
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     currentUploadingImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] data = baos.toByteArray();

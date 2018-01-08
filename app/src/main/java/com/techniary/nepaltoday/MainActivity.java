@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+      /*  mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.hasChild(currentUser.getUid())) {
@@ -83,6 +83,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
