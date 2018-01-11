@@ -36,7 +36,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PersonalAccountActivity extends AppCompatActivity {
 
     private CircleImageView mCircleImageView;
-    private Toolbar mToolbar;
     private Button mChangeQuote;
     private Button mChangePic;
     private TextView quoteView;
@@ -54,10 +53,6 @@ public class PersonalAccountActivity extends AppCompatActivity {
 
 
         mCircleImageView = (CircleImageView) findViewById(R.id.imageView_personal_account);
-        mToolbar = (Toolbar) findViewById(R.id.personalAccountToolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(" Profile ");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         quoteView = (TextView) findViewById(R.id.bioGraphy);
         mChangePic = (Button) findViewById(R.id.changePicButton_Personal_activity);

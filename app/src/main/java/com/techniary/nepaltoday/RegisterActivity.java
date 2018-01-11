@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout confirm_password_user;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
 
 
@@ -43,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mToolbar = (Toolbar) findViewById(R.id.register_activity_login_toolbar);
         setSupportActionBar(mToolbar);
@@ -67,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user_email = email_input.getEditText().getText().toString().trim();
+                final String user_email = email_input.getEditText().getText().toString().trim();
                 String password_user_string = password_user.getEditText().getText().toString();
                 String confirm_password_user_string = confirm_password_user.getEditText().getText().toString();
 
@@ -81,10 +87,30 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    progressDialog.dismiss();
-                                    Intent intent = new Intent(RegisterActivity.this, MyAccountActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    HashMap<String,String> user_info = new HashMap<>();
+                                    user_info.put("Username","default");
+                                    user_info.put("Bio","default");
+                                    user_info.put("profile_picture","default");
+
+                                    mDatabase.child(mAuth.getCurrentUser().getUid()).setValue(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                progressDialog.dismiss();
+                                                Intent intent = new Intent(RegisterActivity.this, MyAccountActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(RegisterActivity.this, " Error while signing up ", Toast.LENGTH_LONG).show();
+                                                progressDialog.hide();
+                                            }
+                                        }
+                                    });
+
+
                                 } else {
                                     Toast.makeText(RegisterActivity.this, " Error while signing up ", Toast.LENGTH_LONG).show();
                                     progressDialog.hide();

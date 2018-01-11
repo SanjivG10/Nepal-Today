@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/AccountForNavigation"
+        android:title="My Account"
+        android:icon="@drawable/friend_icon">
+
+    </item>
+
+    <item
+        android:id="@+id/BBCNews"
+        android:title="Int. News"
+        android:icon="@drawable/news_icon">
+
+    </item>
+
+    <item
+        android:id="@+id/logout_navigation"
+        android:title="Log Out"
+        android:icon="@drawable/logout_navigation"
+        ></item>
+
+
+
+
+
+</menu>

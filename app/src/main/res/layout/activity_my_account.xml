@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     tools:context="com.techniary.nepaltoday.MyAccountActivity">
 
     <include layout="@layout/main_toolbar" android:id="@+id/toolbar_my_account_activity" />
@@ -22,6 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Username"
+            android:textColorHint="#000"
+            android:background="@drawable/edittext_backgrond_second"
+            android:textColor="#FFF"
+            android:gravity="center"
             android:maxLines="1"
              />
     </android.support.design.widget.TextInputLayout>
@@ -41,6 +46,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" Say About Yourself "
+            android:gravity="center"
+            android:background="@drawable/edittext_backgrond_second"
+            android:textColorHint="#000"
+            android:textColor="#FFF"
             android:maxLines="2"
             />
     </android.support.design.widget.TextInputLayout>
@@ -66,6 +75,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/colorAccent"
+
         android:text=" Choose Image " />
 
     <Button
@@ -76,6 +86,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="11dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/round_button"
         android:layout_marginEnd="11dp"
         android:text="Finish" />
 

@@ -88,7 +88,6 @@ public class PopularFragment extends Fragment {
             @Override
             protected void populateViewHolder(PostViewHolder viewHolder, Posts model, int position) {
                 Context c = getActivity();
-                viewHolder.goSetTheReferenceFirst();
                 viewHolder.setUsername(model.getCurrentUserID());
                 viewHolder.setCaption(model.getCaption());
                 viewHolder.setTime(model.getTime());
@@ -216,11 +215,6 @@ public class PopularFragment extends Fragment {
 
         }
 
-        public void goSetTheReferenceFirst() {
-
-            String key = mRecyclerAdapter.getRef(getAdapterPosition()).getKey();
-            DatabaseReference x=  mDatabaseReference.child(key);
-        }
     }
 
 }

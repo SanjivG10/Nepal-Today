@@ -44,7 +44,7 @@
             android:id="@+id/newsImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:src="@drawable/circlelayoutgreen"
+            tools:src="@drawable/default_avatar"
             />
         <View
             android:layout_width="match_parent"

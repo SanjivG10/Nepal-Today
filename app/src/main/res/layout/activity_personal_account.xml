@@ -1,56 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#FFF"
+    android:orientation="vertical"
     tools:context="com.techniary.nepaltoday.PersonalAccountActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/personalAccountToolbar"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#FF776D"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/imageView_personal_account"
+            android:src="@drawable/default_avatar"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bioGraphy"
+            android:text=" My Bio "
+            android:layout_below="@id/imageView_personal_account"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00C590">
+        android:orientation="vertical"
+        >
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFF"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/post_icon"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/photosTextView"
+                    android:textSize="24sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    tools:text="50"
+                    />
+
+            </LinearLayout>
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageView_personal_account"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/personalAccountToolbar"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/default_avatar"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bioGraphy"
-        android:text=" My Bio "
-        android:layout_below="@id/imageView_personal_account"
-        android:layout_marginTop="20dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif"
-        android:layout_centerHorizontal="true"
-        />
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFF"
+            >
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/email_iocn"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:id="@+id/ConvosTextView"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    tools:text="sanjivg11@yahoo.com"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFF"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/followers_icon"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:id="@+id/followersTextView"
+                    android:textSize="24sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    tools:text="50"
+                    />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:id="@+id/linearLayout_personal_account"
+        android:id="@+id/layoutForChangingProfileandQuote"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bioGraphy"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         >
-
 
         <Button
             android:id="@+id/changePicButton_Personal_activity"
@@ -71,5 +189,15 @@
 
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/followButton"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_button"
+        android:text="Follow"
+        />
 
-</RelativeLayout>
+
+</LinearLayout>

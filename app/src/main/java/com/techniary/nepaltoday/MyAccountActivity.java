@@ -9,7 +9,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -52,6 +54,7 @@ public class MyAccountActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ProgressDialog anotherProgressDialog;
     private String user_profile_image_download_url;
+    private DatabaseReference usernameDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class MyAccountActivity extends AppCompatActivity {
         anotherProgressDialog.setCanceledOnTouchOutside(false);
 
 
-
+        usernameDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usernames");
         user_profile_image_download_url = "default_avatar";
         mStorageRef = FirebaseStorage.getInstance().getReference();
         user_profile_info = FirebaseDatabase.getInstance().getReference().child("Users").child(curren_user);
@@ -83,6 +86,23 @@ public class MyAccountActivity extends AppCompatActivity {
 
         mChooseImageButton = (Button) findViewById(R.id.choose_image_my_account_activity);
         userNameInputLayout = (TextInputLayout) findViewById(R.id.textInputLayout);
+        userNameInputLayout.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         userBioInputLayout = (TextInputLayout) findViewById(R.id.fav_quote_InputLayout_my_account_activity);
         userBioImageCircleView = (CircleImageView) findViewById(R.id.user_image_my_account_activity);
 
@@ -121,12 +141,12 @@ public class MyAccountActivity extends AppCompatActivity {
 
     private void saveDataInFirebaseRealTime() {
 
-        String userName = userNameInputLayout.getEditText().getText().toString().trim();
+        final String userName = userNameInputLayout.getEditText().getText().toString().trim();
         String bio = userBioInputLayout.getEditText().getText().toString().trim();
 
         String profile_image = user_profile_image_download_url;
 
-        HashMap<String,String> user_info = new HashMap<>();
+        final HashMap<String,String> user_info = new HashMap<>();
         user_info.put("Username",userName);
         user_info.put("Bio",bio);
         user_info.put("profile_picture",profile_image);
@@ -136,11 +156,26 @@ public class MyAccountActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(MyAccountActivity.this," Data Saved",Toast.LENGTH_SHORT);
-                    progressDialog.dismiss();
-                    Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                    usernameDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(userName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful())
+                            {
+                                Toast.makeText(MyAccountActivity.this," Data Saved",Toast.LENGTH_SHORT);
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else
+                            {
+                                Toast.makeText(MyAccountActivity.this," Data Saving Error",Toast.LENGTH_SHORT);
+
+                            }
+                        }
+                    });
+
                 }
 
                 else {

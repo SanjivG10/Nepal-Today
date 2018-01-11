@@ -16,10 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by sanjiv on 1/8/18.
- */
-
 public class NewsViewAdapter extends ArrayAdapter<News> {
     public NewsViewAdapter(@NonNull Context context, ArrayList<News> news) {
         super(context,0, news);
