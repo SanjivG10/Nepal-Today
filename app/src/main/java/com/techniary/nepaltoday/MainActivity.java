@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
 
         mAuth = FirebaseAuth.getInstance();
+        MenuItem my_account = menu_nav.findItem(R.id.AccountForNavigation);
+        MenuItem logout = menu_nav.findItem(R.id.logout_navigation);
+        MenuItem bbcNews = menu_nav.findItem(R.id.BBCNews);
+        MenuItem youtubeTrend = menu_nav.findItem(R.id.youtubeTrending);
+        Log.e("SOMERROR","HATEHIS");
         if (mAuth.getCurrentUser() != null) {
             String current_user = mAuth.getCurrentUser().getUid();
             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_user);
@@ -105,9 +110,13 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabaseReference.keepSynced(true);
     }
-        MenuItem my_account = menu_nav.findItem(R.id.AccountForNavigation);
-        MenuItem logout = menu_nav.findItem(R.id.logout_navigation);
-        MenuItem bbcNews = menu_nav.findItem(R.id.BBCNews);
+    else if(mAuth.getCurrentUser()==null)
+        {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         my_account.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -130,6 +139,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent= new Intent(MainActivity.this,NewsActivity.class);
+                startActivity(intent);
+
+                return true;
+            }
+        });
+
+        youtubeTrend.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent intent = new Intent(MainActivity.this,YoutubeVideoActivity.class);
                 startActivity(intent);
 
                 return true;

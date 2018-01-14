@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/d74e024a30998c82233d8f482b7cb51b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.0.2.aar/1fa47bd512accb9276cc6cc8699e9c58/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac2ce6027755bcf49442e70597bec0feb9064f68">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.0.2.aar/8c9c094fb667bc6307b06b132c4753a6/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed6560f31a6a40b5965f5879d8f2eab1f68def05">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/37.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/8d4de1b7d7bb7170ad60a20f64f5b24a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.0.4.aar/628471460a8e50a7cea45bf1919c55a4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7d7f60c4783872861222166f6164215f8951c7b1">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-2.3.0.aar/6adcbfa75bb61a907925d7b0f2570051/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ce672872bb6f9a775bb52a91dc825d41e393e57b">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/67a7138d27483050bb9977307df522a5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/04cbc1d136ab2bcdd7d4161146405eed/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0-alpha8.aar/8ef3340c297c2e9dcacf64492f2c28ec/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cfb0e06b74b6d9f1a0743d38a97808cf214bdcb1">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/5e1e025697822fd3cb9522d1879ade6e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7cc5473b9cf4ea159a263cd477fb3ecb2987b96">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8663ebf3c96889e7121266e3fc1812aa/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-common-11.0.4.aar/574fbdc0376b4ab70e098f25804dd474/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.0.2.aar/51060a36edab880e2cec3ce0d9b8a363/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="caa03787689212c10939f308a55a8dc8a3333ed2">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/7ee6f6ba422caa75f0de6b9830079fd5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.0.4.aar/647575c1d630b9ab876ca8008c70dff8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-database-11.0.4.aar/27b94cc3dd575214336f5d72a0d5c1f1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7c24e2e9773fb498e390ce973db382c3ddcf748e">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/0f9c1a017866e678c8e11236259660fa/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-fragment-27.0.2.aar/60588fb0d08312247650c991308ca6e2/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="618f75fe11febf263e3234c7da7dc892232a5608">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/e8482b8ecc39560338a8f43383fb6597/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="04cd0cacbedcb338f64665b88bad64d145325fbd">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-storage-common-11.0.4.aar/0d436c1585b0c55e2c03e5586fc5d882/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b685077cdb08cf7ae8b61afd1fe910e47d91b9a">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/android-image-cropper-2.6.0.aar/3e446e857ef55bf50d89d0d0f68afea5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e3a81d9431bc9c7e1e71d664f0227094581bea04">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.2/b9ef4342c934a1a8b107506273dc8061662a322/support-annotations-27.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0b9ef4342c934a1a8b107506273dc8061662a322">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/43.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/42.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-storage-11.0.4.aar/41051aa638fbe2f6061dd0e114a045f8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3ac08c35419ab7cf9146969de471768dbe502f0f">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-11.0.4.aar/0597582891d354c478246848d550457a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-alpha8.aar/f93e4db8da79de06f67f6569d45581cd/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b18c853774c25eeaeb3ecf6f171e26f06c4ba66b">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/34.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/ddc84b61de30978594fba6c3eb04efe5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e5b429c146094a612134910688d169ec08deeefb">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/3ac26c5aca7fec12a7fe151061d8c703/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b432e82447a3af781e927b9ba0bbb9fe2a496d4a">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/e69bd8d46e0ab9a5ff68ca7b7a54b63c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e70a3fed299d84cd868614e11021664d72b8e488">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.0.4.aar/33b7626cd8b7aac59cf5f8a7ee1ccd9e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b5b6af36bacf1d812cd3dc45f9dcab9ea471ed91">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/exifinterface-27.0.2.aar/7e003765b22f9e78a268339d5bbf192c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a5484a6257ede2c88f753070f87805ab5bfbfb77">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.0.2/b9cd8fc6bd15cb915735d34535db30ece0c44603/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/firebase-database-connection-11.0.4.aar/b335a0b784351a8405fd7e94bbe1de1c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1b12397bc9f342b29d9e9108978828f99a6da579">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/133d398db1090d203981b40ef6feef95/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b4d6fbbb48b42dd03fd9c5a09b3b7a53266df6ed">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/compressor-2.1.0.aar/7404921aaeb57c27be18b1ec6e0fd74b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.0.2.aar/7e30fbd2b734610c5082c0000b301b18/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fe3916317a699975bcce0cba2d13fd2d8cf88922">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/44.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/sanjiv/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.0.4.aar/b758a4a8b66c5f9549dbeea7350ab5bf/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="26.0.2"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/home/sanjiv/StudioProjects/Nepal-Today/app/build/intermediates/transforms/preDex/release/24.jar" />
+    </item>
+
+</items>

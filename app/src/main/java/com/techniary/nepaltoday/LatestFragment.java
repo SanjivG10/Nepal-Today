@@ -68,6 +68,7 @@ public class LatestFragment extends Fragment {
     private static int positionOfAdapter;
     private static FirebaseRecyclerAdapter mRecyclerAdapter;
     private static String currentUserID;
+    private TextView totalLikes;
     private static DatabaseReference reactionUserDatabase;
     private static DatabaseReference userDatabaseReference;
 
@@ -125,6 +126,7 @@ public class LatestFragment extends Fragment {
                         viewHolder.setCaption(model.getCaption());
                         viewHolder.setTime(model.getTime());
                         viewHolder.setImage(model.getImage(), c);
+                        viewHolder.setTotalReaction(model.getTotalReactions());
                         viewHolder.setCurrentUserImage(model.getCurrentUserID(), c);
                         viewHolder.imageViewIfUserClicked(model.getCurrentUserReaction(), c);
                         totalVotes = model.getTotalReactions();
@@ -325,22 +327,33 @@ public class LatestFragment extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
+
                 }
             });
 
-            /*if(currentUserReactionKey.equals("notreacted")) {
+        }
 
-                loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
-            }
-            else if (currentUserReactionKey.equals("reacted"))
-            {
-                loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button_red,0,0,0);
-            }
-            else
-            {
-                loveButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_button,0,0,0);
-            }
-            */
+        public void setTotalReaction(String totalReactions) {
+
+
+            String key = mRecyclerAdapter.getRef(getAdapterPosition()).getKey();
+            final TextView mTextView  = (TextView) theRecyclingView.findViewById(R.id.totalLikesOnPost);
+
+            mDatabaseReference.child(key).child("TotalReactions").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mTextView.setText(dataSnapshot.getValue().toString());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
 
         }
     }

@@ -16,6 +16,12 @@
 
     </item>
 
+
+    <item android:id="@+id/youtubeTrending"
+        android:title="Youtube Trend"
+        android:icon="@drawable/trending_icon"
+        />
+
     <item
         android:id="@+id/logout_navigation"
         android:title="Log Out"

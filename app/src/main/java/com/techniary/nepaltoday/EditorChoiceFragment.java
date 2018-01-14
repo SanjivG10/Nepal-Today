@@ -37,9 +37,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditorChoiceFragment extends Fragment {
 
     private FloatingActionButton mFloatingActionButton;
-
-    private CardView moviesCardView;
-    private CardView newsCardView;
     private RecyclerView latestFragmentRecyclerView;
     private FirebaseAuth mAuth;
     private static DatabaseReference mDatabaseReference;
@@ -108,6 +105,7 @@ public class EditorChoiceFragment extends Fragment {
                     viewHolder.setCaption(model.getCaption());
                     viewHolder.setTime(model.getTime());
                     viewHolder.setImage(model.getImage(), c);
+                    viewHolder.setTotalReaction(model.getTotalReactions());
                     viewHolder.setCurrentUserImage(model.getCurrentUserID(), c);
                     viewHolder.imageViewIfUserClicked(model.getCurrentUserReaction(), c);
 
@@ -124,14 +122,13 @@ public class EditorChoiceFragment extends Fragment {
             View theRecyclingView;
             private Button loveButton;
             private RelativeLayout likingLinearLayout;
-
             public PostViewHolder(View itemView) {
                 super(itemView);
 
                 theRecyclingView = itemView;
                 loveButton = (Button) theRecyclingView.findViewById(R.id.loveButton);
                 likingLinearLayout = (RelativeLayout) theRecyclingView.findViewById(R.id.LikingAndCommentingSection);
-                likingLinearLayout.setVisibility(View.GONE);
+                loveButton.setVisibility(View.GONE);
             }
 
 
@@ -229,6 +226,29 @@ public class EditorChoiceFragment extends Fragment {
             }
 
 
+            public void setTotalReaction(String totalReactions) {
+
+
+                String key = mRecyclerAdapter.getRef(getAdapterPosition()).getKey();
+                final TextView mTextView  = (TextView) theRecyclingView.findViewById(R.id.totalLikesOnPost);
+
+                mDatabaseReference.child(key).child("TotalReactions").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        mTextView.setText(dataSnapshot.getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+
         }
+
+
 
     }

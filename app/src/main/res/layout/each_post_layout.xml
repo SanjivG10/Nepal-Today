@@ -104,6 +104,17 @@
             android:layout_marginStart="20dp"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/totalLikesOnPost"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:text="Likes"
+            android:textColor="#000"
+            android:layout_centerInParent="true"
+            />
+
 
 
     </RelativeLayout>

@@ -8,17 +8,20 @@
     android:orientation="vertical"
     tools:context="com.techniary.nepaltoday.PersonalAccountActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/llayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#FF776D"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#FFF"
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:id="@+id/imageView_personal_account"
             android:src="@drawable/default_avatar"
             />
@@ -27,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bioGraphy"
+            android:layout_gravity="center"
             android:text=" My Bio "
             android:layout_below="@id/imageView_personal_account"
             android:textColor="#000000"
@@ -35,169 +39,57 @@
             android:layout_centerHorizontal="true"
             />
 
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:id="@+id/layoutForChangingProfileandQuote"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:id="@+id/changePicButton_Personal_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:padding="1dp"
+                android:drawableLeft="@drawable/post_icon"
+                android:text=" Change Picture  "
+                android:background="@drawable/personal_account_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                />
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:id="@+id/changeBioButton_Personal_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text=" Change Quote  "
+                android:drawableLeft="@drawable/quote_pic"
+                android:padding="1dp"
+                android:background="@drawable/personal_account_button"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        >
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFF"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/post_icon"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:id="@+id/photosTextView"
-                    android:textSize="24sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"
-                    tools:text="50"
-                    />
-
-            </LinearLayout>
-
-
-
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFF"
-            >
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/email_iocn"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="24sp"
-                    android:id="@+id/ConvosTextView"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"
-                    tools:text="sanjivg11@yahoo.com"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFF"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/followers_icon"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:id="@+id/followersTextView"
-                    android:textSize="24sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"
-                    tools:text="50"
-                    />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/layoutForChangingProfileandQuote"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        >
-
-        <Button
-            android:id="@+id/changePicButton_Personal_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/round_button"
-            android:layout_marginRight="10dp"
-            android:text="  Change Picture  " />
-
-        <Button
-            android:id="@+id/changeBioButton_Personal_activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:textColor="#FFFFFF"
-            android:text="  Change Quote  " />
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/followButton"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_button"
-        android:text="Follow"
-        />
 
 
 </LinearLayout>

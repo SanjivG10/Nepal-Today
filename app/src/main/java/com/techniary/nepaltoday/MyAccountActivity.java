@@ -23,8 +23,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -55,6 +60,7 @@ public class MyAccountActivity extends AppCompatActivity {
     private ProgressDialog anotherProgressDialog;
     private String user_profile_image_download_url;
     private DatabaseReference usernameDatabaseReference;
+    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,22 +92,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
         mChooseImageButton = (Button) findViewById(R.id.choose_image_my_account_activity);
         userNameInputLayout = (TextInputLayout) findViewById(R.id.textInputLayout);
-        userNameInputLayout.getEditText().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         userBioInputLayout = (TextInputLayout) findViewById(R.id.fav_quote_InputLayout_my_account_activity);
         userBioImageCircleView = (CircleImageView) findViewById(R.id.user_image_my_account_activity);
@@ -146,44 +137,67 @@ public class MyAccountActivity extends AppCompatActivity {
 
         String profile_image = user_profile_image_download_url;
 
-        final HashMap<String,String> user_info = new HashMap<>();
-        user_info.put("Username",userName);
-        user_info.put("Bio",bio);
-        user_info.put("profile_picture",profile_image);
-
-        user_profile_info.setValue(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
+        usernameDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-
-                    usernameDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(userName).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
-                                Toast.makeText(MyAccountActivity.this," Data Saved",Toast.LENGTH_SHORT);
-                                progressDialog.dismiss();
-                                Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                            else
-                            {
-                                Toast.makeText(MyAccountActivity.this," Data Saving Error",Toast.LENGTH_SHORT);
-
-                            }
-                        }
-                    });
-
-                }
-
-                else {
-                    Toast.makeText(MyAccountActivity.this," Error in Saving ",Toast.LENGTH_SHORT);
-                    progressDialog.hide();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot x : dataSnapshot.getChildren()) {
+                    String username = x.getValue().toString();
+                    if (username.toLowerCase() == userName.toLowerCase()) {
+                        flag = false;
+                        Log.e("USERNAME", username);
+                    } else {
+                        flag = true;
+                        Log.e("USERNAME", username);
+                    }
                 }
             }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         });
+
+        if (flag == true) {
+
+            final HashMap<String, String> user_info = new HashMap<>();
+            user_info.put("Username", userName);
+            user_info.put("Bio", bio);
+            user_info.put("profile_picture", profile_image);
+
+            user_profile_info.setValue(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+
+                        usernameDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(userName).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(MyAccountActivity.this, " Data Saved", Toast.LENGTH_SHORT);
+                                    progressDialog.dismiss();
+                                    Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(MyAccountActivity.this, " Data Saving Error", Toast.LENGTH_SHORT);
+
+                                }
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(MyAccountActivity.this, " Error in Saving ", Toast.LENGTH_SHORT);
+                        progressDialog.hide();
+                    }
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Username is taken mate ",Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
     }
 
 

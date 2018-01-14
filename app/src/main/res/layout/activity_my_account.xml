@@ -24,6 +24,8 @@
             android:layout_height="wrap_content"
             android:hint="Enter Your Username"
             android:textColorHint="#000"
+            android:padding="6dp"
+            android:maxLength="10"
             android:background="@drawable/edittext_backgrond_second"
             android:textColor="#FFF"
             android:gravity="center"
@@ -46,11 +48,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" Say About Yourself "
+            android:padding="6dp"
             android:gravity="center"
             android:background="@drawable/edittext_backgrond_second"
             android:textColorHint="#000"
             android:textColor="#FFF"
             android:maxLines="2"
+            android:maxLength="200"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -74,8 +78,7 @@
         android:layout_below="@+id/user_image_my_account_activity"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/colorAccent"
-
+        android:background="@drawable/personal_account_button"
         android:text=" Choose Image " />
 
     <Button

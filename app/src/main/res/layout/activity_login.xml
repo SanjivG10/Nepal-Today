@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AC262D"
+    android:background="#FFF"
     tools:context="com.techniary.nepaltoday.LoginActivity">
 
 
-
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/login_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/app_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:id="@+id/loginLogo"
@@ -49,7 +48,7 @@
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000"
-                android:background="@drawable/edittext_background"
+                android:background="@drawable/edittext_backgrond_second"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +66,7 @@
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
-                android:background="@drawable/edittext_background"
+                android:background="@drawable/edittext_backgrond_second"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/password"
                 android:padding="10dp"

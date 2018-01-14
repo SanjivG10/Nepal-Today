@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_try"
+    android:background="#FFF"
     tools:context="com.techniary.nepaltoday.RegisterActivity">
 
     <include layout="@layout/main_toolbar" android:id="@+id/register_activity_login_toolbar"/>
@@ -37,10 +37,11 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint=" Enter Your Email"
-            android:padding="10dp"
+            android:padding="5dp"
             android:layout_marginStart="20dp"
+            android:drawableLeft="@drawable/email_iocn"
             android:layout_marginEnd="20dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000"
             android:background="@drawable/edittext_backgrond_second"
             />
     </android.support.design.widget.TextInputLayout>
@@ -62,10 +63,11 @@
             android:layout_height="wrap_content"
             android:hint=" Password "
             android:inputType="textPassword"
-            android:padding="10dp"
+            android:padding="5dp"
             android:layout_marginStart="20dp"
+            android:drawableLeft="@drawable/password"
             android:layout_marginEnd="20dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000"
             android:background="@drawable/edittext_backgrond_second"
             />
     </android.support.design.widget.TextInputLayout>
@@ -88,8 +90,9 @@
             android:inputType="textPassword"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:padding="10dp"
-            android:textColor="#FFFFFF"
+            android:padding="5dp"
+            android:drawableLeft="@drawable/password"
+            android:textColor="#000"
             android:background="@drawable/edittext_backgrond_second"
             />
     </android.support.design.widget.TextInputLayout>

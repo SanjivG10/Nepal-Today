@@ -21,7 +21,6 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-
         newsView = (ListView) findViewById(R.id.listViewForNews);
         newsArrayList = new ArrayList<>();
         newsViewAdapter = new NewsViewAdapter(this, new ArrayList<News>());
@@ -54,7 +53,7 @@ public class NewsActivity extends AppCompatActivity {
                 return null;
             }
 
-            Log.e("InDOINBACKGROND","SOJASDOIS");
+            System.out.println("IAMHERE");
 
             ArrayList<News> result = GetNews.fetchNewsData(urls[0]);
             return result;
