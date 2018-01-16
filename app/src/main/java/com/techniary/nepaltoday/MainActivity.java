@@ -26,6 +26,8 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -112,9 +114,10 @@ public class MainActivity extends AppCompatActivity {
     }
     else if(mAuth.getCurrentUser()==null)
         {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+          Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+
         }
 
 
@@ -174,10 +177,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+
+
         }
 
 
-        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+     mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("Username").getValue().toString().equals("default") || dataSnapshot.child("profile_picture").getValue().toString().equals("default"))
@@ -197,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
 
 
     }

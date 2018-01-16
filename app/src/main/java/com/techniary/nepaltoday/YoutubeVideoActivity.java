@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -113,10 +114,10 @@ public class YoutubeVideoActivity extends YouTubeBaseActivity {
         @Override
         protected void onPostExecute(ArrayList<YoutubeTrends> youtubeTrends) {
             super.onPostExecute(youtubeTrends);
+
             madapter.clear();
             if(youtubeTrends!=null && !youtubeTrends.isEmpty())
             {
-                Log.e("IWASERE","I WAS HERE");
                 madapter.addAll(youtubeTrends);
             }
 

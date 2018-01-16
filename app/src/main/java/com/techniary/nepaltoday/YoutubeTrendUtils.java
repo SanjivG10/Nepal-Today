@@ -128,6 +128,13 @@ public  class YoutubeTrendUtils {
     }
 
     public static ArrayList<YoutubeTrends> sumUpEverything(String url) {
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         URL request_url = createURL(url);
         String json = "";
         try {
