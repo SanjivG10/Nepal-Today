@@ -87,6 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    
                                     HashMap<String,String> user_info = new HashMap<>();
                                     user_info.put("Username","default");
                                     user_info.put("Bio","default");
@@ -110,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                     });
 
-
                                 } else {
                                     Toast.makeText(RegisterActivity.this, " Error while signing up ", Toast.LENGTH_LONG).show();
                                     progressDialog.hide();
@@ -122,8 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     else {
                         progressDialog.hide();
-                        Toast.makeText(RegisterActivity.this, " Error while creating an Account ", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(RegisterActivity.this, " Email empty or password do not match ", Toast.LENGTH_LONG).show();
 
                     }
                 }

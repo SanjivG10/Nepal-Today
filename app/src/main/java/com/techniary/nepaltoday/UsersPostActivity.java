@@ -225,7 +225,6 @@ public class UsersPostActivity extends AppCompatActivity {
                 final String postTime = mdformat.format(calendar.getTime());
                 final String Caption = mEditText.getText().toString();
 
-
                 if(currentUploadingImage!=null) {
                     StorageReference filePath = mStorageReference.child("User_images")
                             .child(time + ".jpg");
@@ -249,8 +248,6 @@ public class UsersPostActivity extends AppCompatActivity {
                             downloadUrlForImage = taskSnapshot.getDownloadUrl().toString();
                             saveDataWithPhoto(postTime,Caption,downloadUrlForImage);                        }
                     });
-
-
                 }
                 else
                 {

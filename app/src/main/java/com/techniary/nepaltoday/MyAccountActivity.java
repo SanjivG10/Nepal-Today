@@ -59,8 +59,6 @@ public class MyAccountActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ProgressDialog anotherProgressDialog;
     private String user_profile_image_download_url;
-    private DatabaseReference usernameDatabaseReference;
-    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +68,7 @@ public class MyAccountActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         String curren_user = mAuth.getCurrentUser().getUid();
-       progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
 
         anotherProgressDialog = new ProgressDialog(MyAccountActivity.this);
         anotherProgressDialog.setTitle(" Uploading Your Picture ");
@@ -78,7 +76,6 @@ public class MyAccountActivity extends AppCompatActivity {
         anotherProgressDialog.setCanceledOnTouchOutside(false);
 
 
-        usernameDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Usernames");
         user_profile_image_download_url = "default_avatar";
         mStorageRef = FirebaseStorage.getInstance().getReference();
         user_profile_info = FirebaseDatabase.getInstance().getReference().child("Users").child(curren_user);
@@ -125,40 +122,13 @@ public class MyAccountActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
     private void saveDataInFirebaseRealTime() {
 
         final String userName = userNameInputLayout.getEditText().getText().toString().trim();
         String bio = userBioInputLayout.getEditText().getText().toString().trim();
 
         String profile_image = user_profile_image_download_url;
-
-        usernameDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot x : dataSnapshot.getChildren()) {
-                    String username = x.getValue().toString();
-                    if (username.toLowerCase() == userName.toLowerCase()) {
-                        flag = false;
-                        Log.e("USERNAME", username);
-                    } else {
-                        flag = true;
-                        Log.e("USERNAME", username);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        if (flag == true) {
 
             final HashMap<String, String> user_info = new HashMap<>();
             user_info.put("Username", userName);
@@ -170,34 +140,18 @@ public class MyAccountActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
 
-                        usernameDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(userName).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(MyAccountActivity.this, " Data Saved", Toast.LENGTH_SHORT);
-                                    progressDialog.dismiss();
-                                    Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(MyAccountActivity.this, " Data Saving Error", Toast.LENGTH_SHORT);
-
-                                }
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(MyAccountActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                             }
-                        });
-
-                    } else {
+                    else {
                         Toast.makeText(MyAccountActivity.this, " Error in Saving ", Toast.LENGTH_SHORT);
                         progressDialog.hide();
                     }
                 }
             });
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Username is taken mate ",Toast.LENGTH_LONG).show();
-            progressDialog.dismiss();
-        }
+
     }
 
 

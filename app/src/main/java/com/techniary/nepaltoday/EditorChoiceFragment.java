@@ -77,7 +77,7 @@ public class EditorChoiceFragment extends Fragment {
 
              q = FirebaseDatabase.getInstance()
                 .getReference("Posts")
-                .orderByChild("CurrentUserID").equalTo("1Qclku47lEhrB7VWGqSOQuWpPhM2");
+                .orderByChild("CurrentUserID").equalTo("9eRMNOn5eCRm2xnyFueeDMYi2cQ2");
 
             userDatabaseReference = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Users");
 
